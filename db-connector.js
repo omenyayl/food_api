@@ -5,7 +5,6 @@ const NAME = 'usda';
 const COLLECTION = 'food';
 
 class DBConnector {
-    static instance;
     url;
     name;
     collection;
@@ -18,8 +17,8 @@ class DBConnector {
     }
 
     static getInstance() {
-        if (!this.instance) this.instance = new DBConnector(URL, NAME, COLLECTION);
-        return this.instance;
+        if (!DBConnector.instance) DBConnector.instance = new DBConnector(URL, NAME, COLLECTION);
+        return DBConnector.instance;
     }
 
     getDB () {
