@@ -5,11 +5,6 @@ const NAME = 'usda';
 const COLLECTION = 'food';
 
 class DBConnector {
-    url;
-    name;
-    collection;
-    db;
-
     constructor (url, name, collection) {
         this.url = url;
         this.name = name;
@@ -27,11 +22,11 @@ class DBConnector {
                 resolve(this.db);
             }
             else {
-                MongoClient.connect(URL, {
+                MongoClient.connect(this.url, {
                     useUnifiedTopology: true,
                     useNewUrlParser: true
                 }).then(client => {
-                    this.db = client.db(NAME).collection(COLLECTION);
+                    this.db = client.db(this.name).collection(this.collection);
                     resolve(this.db);
                 }).catch(e => reject(e));
             }
